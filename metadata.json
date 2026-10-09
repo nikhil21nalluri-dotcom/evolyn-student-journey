@@ -1,0 +1,11 @@
+{
+  "name": "Remix Remix Remix Remix Evolyn - Student Journey Intelligence",
+  "description": "AI-powered Student Success Intelligence Platform. Understand the student, not just the score through real-time trajectory detection and intervention simulation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

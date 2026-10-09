@@ -1,0 +1,158 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Authenticated user profile storing credentials and institutional role.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "role": { "type": "string", "enum": ["advisor", "educator", "student", "admin"] },
+        "institution": { "type": "string", "maxLength": 256 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "InterventionNote": {
+      "title": "InterventionNote",
+      "description": "Secure advisor note or intervention logged for a student growth track profile.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "studentId": { "type": "string", "maxLength": 128 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorEmail": { "type": "string", "maxLength": 256 },
+        "title": { "type": "string", "maxLength": 256 },
+        "content": { "type": "string", "maxLength": 2048 },
+        "strategy": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "authorId", "content", "createdAt"]
+    },
+    "DirectMessage": {
+      "title": "DirectMessage",
+      "description": "Secure direct care messages and replies between faculty advisors and students.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "studentId": { "type": "string", "maxLength": 128 },
+        "studentName": { "type": "string", "maxLength": 128 },
+        "facultyName": { "type": "string", "maxLength": 128 },
+        "facultyRole": { "type": "string", "maxLength": 128 },
+        "timestamp": { "type": "string", "maxLength": 128 },
+        "subject": { "type": "string", "maxLength": 256 },
+        "message": { "type": "string", "maxLength": 4096 },
+        "careCategory": { "type": "string", "maxLength": 64 },
+        "status": { "type": "string", "maxLength": 32 }
+      },
+      "required": ["id", "studentId", "subject", "message"]
+    },
+    "ImportAuditRecord": {
+      "title": "ImportAuditRecord",
+      "description": "Secure audit record for CSV dataset batch integration operations.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "fileName": { "type": "string", "maxLength": 256 },
+        "importDate": { "type": "string", "maxLength": 128 },
+        "uploaderName": { "type": "string", "maxLength": 128 },
+        "uploaderEmail": { "type": "string", "maxLength": 256 },
+        "totalRows": { "type": "number" },
+        "importedRows": { "type": "number" },
+        "skippedRows": { "type": "number" },
+        "failedRows": { "type": "number" },
+        "status": { "type": "string", "enum": ["COMPLETED", "PARTIALLY_IMPORTED", "REJECTED"] },
+        "notes": { "type": "array", "items": { "type": "string" } },
+        "affectedStudentIds": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["id", "category", "fileName", "importDate", "status"]
+    },
+    "PracticeRecord": {
+      "title": "PracticeRecord",
+      "description": "Authenticated student communication and career practice session record.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "studentId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 256 },
+        "category": { "type": "string", "maxLength": 64 },
+        "durationSeconds": { "type": "number" },
+        "completedAt": { "type": "string" },
+        "reflectionMood": { "type": "string", "maxLength": 32 },
+        "reflectionNotes": { "type": "string", "maxLength": 2048 },
+        "isSelfAssessment": { "type": "boolean" },
+        "score": { "type": "number" }
+      },
+      "required": ["id", "studentId", "category", "completedAt"]
+    },
+    "EducationalResource": {
+      "title": "EducationalResource",
+      "description": "Grounded educational document in the Evolyn RAG Knowledge repository.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 256 },
+        "author": { "type": "string", "maxLength": 256 },
+        "sourceUrl": { "type": "string", "maxLength": 512 },
+        "category": { "type": "string", "maxLength": 64 },
+        "subject": { "type": "string", "maxLength": 128 },
+        "topic": { "type": "string", "maxLength": 128 },
+        "publicationDate": { "type": "string", "maxLength": 64 },
+        "license": { "type": "string", "maxLength": 128 },
+        "lastIndexedDate": { "type": "string" }
+      },
+      "required": ["id", "title", "category"]
+    },
+    "LiveRoom": {
+      "title": "LiveRoom",
+      "description": "Collaborative peer practice room metadata and status.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 256 },
+        "category": { "type": "string", "maxLength": 64 },
+        "hostId": { "type": "string", "maxLength": 128 },
+        "hostName": { "type": "string", "maxLength": 128 },
+        "accessType": { "type": "string", "enum": ["public", "private"] },
+        "maxParticipants": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "closed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "category", "hostId", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Private user profile documents containing authentication and email data."
+    },
+    "/interventions/{interventionId}": {
+      "schema": { "$ref": "#/entities/InterventionNote" },
+      "description": "Advisor guidance notes and interventions logged for students."
+    },
+    "/direct_messages/{messageId}": {
+      "schema": { "$ref": "#/entities/DirectMessage" },
+      "description": "Direct care messages and replies between faculty and students."
+    },
+    "/import_audits/{importId}": {
+      "schema": { "$ref": "#/entities/ImportAuditRecord" },
+      "description": "Audit trail records tracking CSV dataset imports and student record syncs."
+    },
+    "/practice_records/{recordId}": {
+      "schema": { "$ref": "#/entities/PracticeRecord" },
+      "description": "Verified student communication practice sessions and assessments."
+    },
+    "/educational_resources/{resourceId}": {
+      "schema": { "$ref": "#/entities/EducationalResource" },
+      "description": "Openly licensed educational resources in the Evolyn RAG Knowledge repository."
+    },
+    "/live_rooms/{roomId}": {
+      "schema": { "$ref": "#/entities/LiveRoom" },
+      "description": "Live practice rooms metadata and peer presence state."
+    }
+  }
+}

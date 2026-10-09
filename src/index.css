@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #030410;
+    --glass: #0b0f2a;
+    --glass-card: #0c1033;
+    --line: #222955;
+    --text: #f0f1ff;
+    --mute: #a4a9d0;
+    --acc: #ff6a2b;
+    --blue: #6f8dff;
+    --font-serif: "Baskerville Old Face", "Libre Baskerville", Baskerville, "Times New Roman", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  #root {
+    background: transparent !important;
+  }
+
+  canvas#c {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  h1, h2, h3, .font-serif, .logo-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+.font-baskerville {
+  font-family: "Baskerville Old Face", "Libre Baskerville", Baskerville, "Times New Roman", Georgia, serif;
+}
+
+.text-acc {
+  color: var(--acc);
+}
+
+.bg-acc {
+  background-color: var(--acc);
+}
+
+.border-line {
+  border-color: var(--line);
+}
+
+.glass-box {
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+}
+
+.glass-card {
+  background: var(--glass-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--acc);
+  box-shadow: 0 12px 40px rgba(255, 106, 43, 0.18);
+}
+
+.gradient-acc-text {
+  background: linear-gradient(90deg, #ff6a2b, #ffb27a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  background: var(--acc);
+  color: #ffffff;
+  box-shadow: 0 0 30px rgba(255, 106, 43, 0.45);
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #ff7d42;
+  box-shadow: 0 0 40px rgba(255, 106, 43, 0.65);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #02030a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(111, 141, 255, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 106, 43, 0.5);
+}
